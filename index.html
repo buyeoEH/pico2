@@ -95,14 +95,23 @@
                         
                         // 상태 텍스트 및 색상 변경 로직
                         const statusElement = document.getElementById('moistureStatus');
-                        statusElement.innerText = data.status;
+                        if(data.status == '1'){
+                            data_status = '건조'
+                        }
+                        else if(data.status == '2'){
+                            data_status = '적정'
+                        }
+                        else{
+                            data_status = '과습'
+                        }
+                        statusElement.innerText = data_status;
 
-                        // 상태에 따라 글자 색상 바꾸기
-                        if (data.status.includes("건조")) {
+                        // 상태에 따라 글자 색상 바꾸기 1:건조 | 2: 적정 | 3: 과습
+                        if (data.status.includes("1")) {
                             statusElement.style.color = "#FF5252"; // 빨간색 (경고)
-                        } else if (data.status.includes("적절")) {
+                        } else if (data.status.includes("2")) {
                             statusElement.style.color = "#4CAF50"; // 초록색 (안정)
-                        } else if (data.status.includes("과습")) {
+                        } else if (data.status.includes("3")) {
                             statusElement.style.color = "#2196F3"; // 파란색 (물 많음)
                         } else {
                             statusElement.style.color = "#333";
